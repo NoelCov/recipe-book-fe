@@ -1,15 +1,42 @@
+'use-client';
+
+import { useEffect, useState } from "react";
+
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"
+  
+import { RecipeCard } from "@/components/demo-recipe-card/demo-recipe-card";
+
+const fetchData = async () => {
+    // More about data fetching https://nextjs.org/docs/app/building-your-application/caching#on-demand-revalidation
+    const res = await fetch("http://localhost:8080/api/recipe/", {cache: 'no-store'});
+    console.log(res);
+    if (!res.ok) {
+        throw new Error("Failed to fetch data.");
+    }
+    return res.json();    
+}
+
 export default async function Home() {
     // Pull all the recipes? I mean I don't have many so why not?
-    const res = await fetch("http://localhost:8080/api/recipe/");
-    const data = await res.json();
+    const data = await fetchData();
+    console.log(data)
 
     return (
-        <main>
-            <h1>Hello</h1>
+        <div className="h-screen flex items-center justify-center flex-col gap-8">
+            <h1 className="text-3xl">All recipes</h1>
             {
-                // Map an object I think is Object.values() or something like that. Then display all recipes with name and maybe description.
-                // Think of what else to include here.
+                data.map((obj, key : number) => {
+                      return (
+                    <RecipeCard key={key} obj={obj} />
+                )})
             }
-        </main>
+        </div>
     );
 }
