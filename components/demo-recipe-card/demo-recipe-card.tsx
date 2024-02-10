@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card"
 
 import { Button } from "@/components/ui/button"
+import Link from 'next/link'
 
 
 interface recipeDemo {
@@ -26,7 +27,7 @@ export const RecipeCard = ({obj} : recipeDemo) => {
               <CardDescription>Description: {obj.description[0].toUpperCase() + obj.description.substring(1)}</CardDescription>
           </CardHeader>
           <CardFooter>
-            <Button>View full recipe</Button>
+            <Button><Link href={`/recipes/${obj.name}`}>View full recipe</Link></Button>
         </CardFooter>
       </Card>
       )  
