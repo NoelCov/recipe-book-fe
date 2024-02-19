@@ -27,7 +27,7 @@ export const RecipeCard = ({obj} : recipeDemo) => {
               <CardDescription>Description: {obj.description[0].toUpperCase() + obj.description.substring(1)}</CardDescription>
           </CardHeader>
           <CardFooter>
-            <Button><Link href={`/recipes/${obj.name}`}>View full recipe</Link></Button>
+            <Link href={`/recipes/${obj.name}`}><Button>View full recipe</Button></Link>
         </CardFooter>
       </Card>
       )  

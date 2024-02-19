@@ -1,5 +1,6 @@
 // More about Dynamic routes: https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes
 
+import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
 interface recipe {
@@ -70,6 +71,13 @@ export default async function Home({ params }: { params: { slug: string } }) {
                     return (<p key={key}>{step[0].toUpperCase() + step.substring(1)}</p>)
                 })}
             </div>
+            <Separator className="my-4"/>
+            <div className="flex gap-6">
+                {/* TODO Add this functionality to edit recipe and delete recipe. */}
+            <Button>Edit recipe</Button>
+            <Button>Delete recipe</Button>
+            </div>
+            
         </div>
 
     </div>
