@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { HTMLInputTypeAttribute } from 'react'
+
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 interface input {
     label: string,
-    placeholder: string
+    placeholder: string,
+    name: string
 }
 
-export const Input = ({ label, placeholder }: input) => {
+const InputComponent = ({ label, placeholder, name }: input) => {
     return (
-        <div className="flex flex-col gap-1 mb-6 align-center max-w-80">
-            <label className="text-sm">{label}</label>
-            <input type="text" placeholder={placeholder} className="input input-bordered w-full input-sm" />
+        <div className="flex flex-col gap-2 mb-6 align-center w-full">
+            <Label htmlFor={name}>{label}</Label>
+            <Input placeholder={placeholder} name={name} type="text" />
         </div >
     )
 }
+
+export default InputComponent;  
