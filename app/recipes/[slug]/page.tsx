@@ -41,7 +41,7 @@ export default async function Home({ params }: { params: { slug: string } }) {
     console.log(recipe);
 
     return (
-        <div className="flex flex-col justify-center h-screen items-center w-1/2 mx-auto">
+        <div className="flex flex-col justify-center h-screen items-center w-1/2 xl:w-[800px] mx-auto">
             <div className="p-10 border shadow-md rounded-[0.5rem] bg-background">
                 <div className="flex flex-col gap-2 mb-8">
                     <h1 className="text-2xl font-bold">{recipe.name.toUpperCase()}</h1>
