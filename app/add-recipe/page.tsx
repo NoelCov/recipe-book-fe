@@ -22,10 +22,11 @@ export default function AddRecipe() {
       }
     }
     object["macros"] = macros;
-    console.log(object);
 
     const res = await fetch("http://localhost:8080/api/recipe/", {
-      method: 'POST', body: JSON.stringify(object)
+      method: 'POST', body: JSON.stringify(object), headers: {
+        'Content-Type': 'application/json'
+      }
     });
     console.log(res);
     if (!res.ok) {
@@ -49,7 +50,7 @@ export default function AddRecipe() {
             <Label htmlFor="instructions">Instructions</Label>
             <Textarea rows={4} placeholder="Start by warming up..." name="instructions" />
           </div>
-          <Input label="Servings" placeholder="2" name="servings" s />
+          <Input label="Servings" placeholder="2" name="servings" />
           <Input label="Time to prepare" placeholder="20 minutes" name="timeToPrepare" />
           <Input label="Description" placeholder="Easy to make chicken recipe" name="description" />
           <Input label="Time to cook" placeholder="10 minutes" name="timeToCook" />
