@@ -67,6 +67,7 @@ export default async function Home({ params }: { params: { slug: string } }) {
                 </div>
                 <Separator className="my-4" />
                 <div className="flex flex-col gap-2">
+                    <p className="font-semibold text-lg">Instructions</p>
                     {recipe.instructions}
                     {/* {recipe.instructions.map((step: string, key: number) => {
                         return (<p key={key}>{step[0].toUpperCase() + step.substring(1)}</p>)
