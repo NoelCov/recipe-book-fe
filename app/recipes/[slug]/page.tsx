@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
+import DeleteRecipeButton from "@/components/delete-recipe-button/delete-recipe-button"
+
 interface recipe {
     name: string,
     mainIngredient: string,
@@ -35,10 +37,7 @@ const fetchData = async (recipe: string) => {
 }
 
 export default async function Home({ params }: { params: { slug: string } }) {
-    console.log(params);
     const recipe: recipe = await fetchData(params.slug);
-
-    console.log(recipe);
 
     return (
         <div className="flex flex-col justify-center h-screen items-center w-1/2 xl:w-[800px] mx-auto">
@@ -77,11 +76,9 @@ export default async function Home({ params }: { params: { slug: string } }) {
                 <div className="flex gap-6">
                     {/* TODO Add this functionality to edit recipe and delete recipe. */}
                     <Button>Edit recipe</Button>
-                    <Button>Delete recipe</Button>
+                    <DeleteRecipeButton recipeName={params.slug} />
                 </div>
-
             </div>
-
         </div>
     )
 }
