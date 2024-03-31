@@ -4,26 +4,9 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
 import DeleteRecipeButton from "@/components/delete-recipe-button/delete-recipe-button"
+import EditRecipeButton from "@/components/edit-recipe-button/edit-recipe-button";
 
-interface recipe {
-    name: string,
-    mainIngredient: string,
-    ingredients: string,
-    timeToCook: string,
-    timeToPrepare: string,
-    description: string,
-    servings: number
-    equipmentNeeded: string,
-    macros: macros,
-    instructions: string
-}
-
-interface macros {
-    calories: number,
-    fats: number,
-    protein: number,
-    carbs: number
-}
+import { recipeInterface } from "@/lib/recipe";
 
 const fetchData = async (recipe: string) => {
     const url: string = `http://localhost:8080/api/recipe/name/${recipe}`;
@@ -37,7 +20,7 @@ const fetchData = async (recipe: string) => {
 }
 
 export default async function Home({ params }: { params: { slug: string } }) {
-    const recipe: recipe = await fetchData(params.slug);
+    const recipe: recipeInterface = await fetchData(params.slug);
 
     return (
         <div className="flex flex-col justify-center h-screen items-center w-1/2 xl:w-[800px] mx-auto">
@@ -74,9 +57,8 @@ export default async function Home({ params }: { params: { slug: string } }) {
                 </div>
                 <Separator className="my-4" />
                 <div className="flex gap-6">
-                    {/* TODO Add this functionality to edit recipe and delete recipe. */}
-                    <Button>Edit recipe</Button>
-                    <DeleteRecipeButton recipeName={params.slug} />
+                    <EditRecipeButton recipe={recipe}>Edit recipe</EditRecipeButton>
+                    <DeleteRecipeButton recipeName={recipe.name} />
                 </div>
             </div>
         </div>

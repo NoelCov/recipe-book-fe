@@ -34,7 +34,7 @@ export default function AddRecipe() {
   return (
     <div className="flex flex-col p-24 items-center h-screen justify-center">
       <h1 className="text-3xl mb-10">Add recipe</h1>
-      <RecipeForm onSubmit={onSubmit} />
+      <RecipeForm onSubmit={onSubmit} recipe={null} />
     </div >
   )
 }

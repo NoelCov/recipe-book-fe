@@ -14,16 +14,12 @@ import {
 
 import { RecipeForm } from "@/components/recipe-form/recipe-form";
 
-import Link from "next/link"
+import { recipeInterface } from "@/lib/recipe";
 
+const EditRecipeButton = ({ recipe }: { recipe: recipeInterface }) => {
 
-interface props {
-    recipeName: string
-}
-
-const EditRecipeButton = ({ recipeName }: props) => {
     const editRecipe = async () => {
-        const res = await fetch(`http://localhost:8080/api/recipe/name/${recipeName}`, {
+        const res = await fetch(`http://localhost:8080/api/recipe/name/${recipe.name}`, {
             method: 'PUT'
         });
         console.log(res);
@@ -46,7 +42,7 @@ const EditRecipeButton = ({ recipeName }: props) => {
                         Make changes to this recipe. Click save when you're done.
                     </DialogDescription>
                 </DialogHeader>
-                <RecipeForm onSubmit={editRecipe()} />
+                <RecipeForm onSubmit={editRecipe()} recipe={recipe} />
             </DialogContent>
         </Dialog>
 

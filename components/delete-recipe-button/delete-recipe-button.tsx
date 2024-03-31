@@ -15,12 +15,9 @@ import {
 
 import Link from "next/link"
 
+import { recipeInterface } from "@/lib/recipe";
 
-interface props {
-    recipeName: string
-}
-
-const DeleteRecipeButton = ({ recipeName }: props) => {
+const DeleteRecipeButton = ({ recipeName }: { recipeName: string }) => {
     const deleteRecipe = async () => {
         const res = await fetch(`http://localhost:8080/api/recipe/name/${recipeName}`, {
             method: 'DELETE'
@@ -33,6 +30,7 @@ const DeleteRecipeButton = ({ recipeName }: props) => {
         }
     }
 
+    //TODO Change this to a regular dialog so that you have to click a confirm button before deleting and make it read or something.
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
