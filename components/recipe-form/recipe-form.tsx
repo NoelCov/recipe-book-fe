@@ -1,9 +1,12 @@
+'use client';
+
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import Input from "@/components/input/input";
 
 import { recipeInterface } from "@/lib/recipe";
+import { useState } from "react";
 
 interface props {
   recipe: recipeInterface | null,
@@ -11,6 +14,9 @@ interface props {
 }
 
 export const RecipeForm = ({ onSubmit, recipe }: props) => {
+  const [instructions, setInstructions] = useState(recipe != null ? recipe.instructions : "");
+  const [ingredients, setIngredients] = useState(recipe != null ? recipe.ingredients : "");
+
   return (
     <form className="flex flex-col items-center" onSubmit={onSubmit}>
       <div className="flex flex-col xl:grid xl:grid-cols-2 xl:gap-x-20 w-[950px]">
@@ -18,11 +24,11 @@ export const RecipeForm = ({ onSubmit, recipe }: props) => {
         <Input label="Main ingredient" placeholder="Chicken" name="mainIngredient" initialValue={recipe != null ? recipe.mainIngredient : ""} />
         <div className="flex flex-col gap-2 mb-6">
           <Label htmlFor="ingredients">Ingredients</Label>
-          <Textarea rows={4} placeholder="1 onion, 1/2 tbsp of paprika..." name="ingredients" value={recipe != null ? recipe.ingredients : ""} />
+          <Textarea rows={4} placeholder="1 onion, 1/2 tbsp of paprika..." name="ingredients" value={ingredients} onChange={(event) => setIngredients(event.target.value)} />
         </div>
         <div className="flex flex-col gap-2 mb-6">
           <Label htmlFor="instructions">Instructions</Label>
-          <Textarea rows={4} placeholder="Start by warming up..." name="instructions" value={recipe != null ? recipe.instructions : ""} />
+          <Textarea rows={4} placeholder="Start by warming up..." name="instructions" value={instructions} onChange={(event) => setInstructions(event.target.value)} />
         </div>
         <Input label="Servings" placeholder="2" name="servings" initialValue="" />
         <Input label="Time to prepare" placeholder="20 minutes" name="timeToPrepare" initialValue={recipe != null ? recipe.timeToPrepare : ""} />
