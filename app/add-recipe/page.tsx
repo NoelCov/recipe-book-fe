@@ -2,8 +2,11 @@
 
 import { FormEvent } from "react";
 import { RecipeForm } from "@/components/recipe-form/recipe-form";
+import { useRouter } from 'next/navigation'
+
 
 export default function AddRecipe() {
+  const router = useRouter();
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,7 +31,8 @@ export default function AddRecipe() {
     if (!res.ok) {
       throw new Error("Failed to fetch data.");
     }
-    return res.json();
+
+    router.push("/");
   }
 
   return (

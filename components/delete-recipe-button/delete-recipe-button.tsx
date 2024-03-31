@@ -12,7 +12,11 @@ import {
     DialogClose
 } from "@/components/ui/dialog";
 
+import { useRouter } from 'next/navigation'
+
 const DeleteRecipeButton = ({ recipeName }: { recipeName: string }) => {
+    const router = useRouter();
+
     const deleteRecipe = async () => {
         const res = await fetch(`http://localhost:8080/api/recipe/name/${recipeName}`, {
             method: 'DELETE'
@@ -23,6 +27,8 @@ const DeleteRecipeButton = ({ recipeName }: { recipeName: string }) => {
         } else {
             "Something went wrong";
         }
+
+        router.push("/");
     }
 
     return (
